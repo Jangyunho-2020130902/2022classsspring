@@ -1,0 +1,460 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Jangyunho-2020130902/2022classsspring/blob/main/20220328%20new%20\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!pip install gradio"
+      ],
+      "metadata": {
+        "id": "btNmAmMSq98e"
+      },
+      "execution_count": 119,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import json"
+      ],
+      "metadata": {
+        "id": "PqWW8Im_5BXZ"
+      },
+      "execution_count": 83,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import gradio as gr \n",
+        "import requests \n",
+        "import pandas as pd"
+      ],
+      "metadata": {
+        "id": "wksgBXtyrOAs"
+      },
+      "execution_count": 78,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "\n",
+        "response = requests.get('http://apis.data.go.kr/B553530/GHG_LIST_04/GHG_LIST_04_01_VIEW?ServiceKey=qGhKz6oZzGAhnSPbQeJXI4EBJJoMc9%2BQkI4z3j2y%2BquCu78sMk0Pd0OaGW2F6wmynA6keNju2Okl7dtqFtibNg%3D%3D&q1=2018&q2=2&q3=3&q4=22291&apiType=JSON&numOfRows=10&pageNo=1')\n",
+        "\n",
+        "response          \n",
+        "        \n",
+        " "
+      ],
+      "metadata": {
+        "id": "LQjk_jyOrV1-",
+        "outputId": "6db61dec-1eda-47ce-9fd7-cd1314d1bcfa",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 173,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "<Response [200]>"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 173
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "r= response.json()\n",
+        "r"
+      ],
+      "metadata": {
+        "id": "NwpAKUCW0CVF",
+        "outputId": "95a985e1-7de2-40d5-f87b-33918ca463c7",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 174,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "{'numOfRows': '10',\n",
+              " 'opentable': {'field': [{'DATA_REG_DT': '2021-07-01 00:00:00.0',\n",
+              "    'KSIC_CD': '22291',\n",
+              "    'ORG_FORM_CD': '2',\n",
+              "    'QSTNR_NO': '5406303',\n",
+              "    'TRGT_YEAR': '2018',\n",
+              "    'WIDM_LOCL_CD': '2',\n",
+              "    'WRKPLC_WRKR_VOL_CD': '3'},\n",
+              "   {'DATA_REG_DT': '2021-07-01 00:00:00.0',\n",
+              "    'KSIC_CD': '22291',\n",
+              "    'ORG_FORM_CD': '1',\n",
+              "    'QSTNR_NO': '5351944',\n",
+              "    'TRGT_YEAR': '2018',\n",
+              "    'WIDM_LOCL_CD': '2',\n",
+              "    'WRKPLC_WRKR_VOL_CD': '3'},\n",
+              "   {'DATA_REG_DT': '2021-07-01 00:00:00.0',\n",
+              "    'KSIC_CD': '22291',\n",
+              "    'ORG_FORM_CD': '2',\n",
+              "    'QSTNR_NO': '0221453',\n",
+              "    'TRGT_YEAR': '2018',\n",
+              "    'WIDM_LOCL_CD': '2',\n",
+              "    'WRKPLC_WRKR_VOL_CD': '3'},\n",
+              "   {'DATA_REG_DT': '2021-07-01 00:00:00.0',\n",
+              "    'KSIC_CD': '22291',\n",
+              "    'ORG_FORM_CD': '2',\n",
+              "    'QSTNR_NO': '0228417',\n",
+              "    'TRGT_YEAR': '2018',\n",
+              "    'WIDM_LOCL_CD': '2',\n",
+              "    'WRKPLC_WRKR_VOL_CD': '3'},\n",
+              "   {'DATA_REG_DT': '2021-07-01 00:00:00.0',\n",
+              "    'KSIC_CD': '22291',\n",
+              "    'ORG_FORM_CD': '2',\n",
+              "    'QSTNR_NO': '0226957',\n",
+              "    'TRGT_YEAR': '2018',\n",
+              "    'WIDM_LOCL_CD': '2',\n",
+              "    'WRKPLC_WRKR_VOL_CD': '3'},\n",
+              "   {'DATA_REG_DT': '2021-07-01 00:00:00.0',\n",
+              "    'KSIC_CD': '22291',\n",
+              "    'ORG_FORM_CD': '2',\n",
+              "    'QSTNR_NO': '5333580',\n",
+              "    'TRGT_YEAR': '2018',\n",
+              "    'WIDM_LOCL_CD': '2',\n",
+              "    'WRKPLC_WRKR_VOL_CD': '3'},\n",
+              "   {'DATA_REG_DT': '2021-07-01 00:00:00.0',\n",
+              "    'KSIC_CD': '22291',\n",
+              "    'ORG_FORM_CD': '2',\n",
+              "    'QSTNR_NO': '5355036',\n",
+              "    'TRGT_YEAR': '2018',\n",
+              "    'WIDM_LOCL_CD': '2',\n",
+              "    'WRKPLC_WRKR_VOL_CD': '3'}]},\n",
+              " 'pageNo': '1',\n",
+              " 'totalCount': 7}"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 174
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "items = r['opentable']['field']"
+      ],
+      "metadata": {
+        "id": "heDGdMPFQ7ko"
+      },
+      "execution_count": 175,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "KSIC_CD = [item['KSIC_CD']for item in items]\n",
+        "ORG_FORM_CD= [item['ORG_FORM_CD']for item in items]\n",
+        "QSTNR_NO = [item['QSTNR_NO']for item in items] \n",
+        "TRGT_YEAR = [item['TRGT_YEAR']for item in items]   \n",
+        "\n",
+        "\n",
+        "KSIC_CD = pd.Series(KSIC_CD)\n",
+        "ORG_FORM_CD= pd.Series(ORG_FORM_CD)\n",
+        "QSTNR_NO = pd.Series(QSTNR_NO)\n",
+        "TRGT_YEAR = pd.Series(TRGT_YEAR)\n",
+        "\n",
+        "df = pd.DataFrame({'KSIC_CD': KSIC_CD, 'ORG_FORM_CD': ORG_FORM_CD, 'QSTNR_NO': QSTNR_NO, 'TRGT_YEAR': TRGT_YEAR})\n",
+        "df"
+      ],
+      "metadata": {
+        "id": "BNEoo_l7SSMs",
+        "outputId": "fdfb75f3-77e7-40bf-d34d-d52a70e58a1d",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 268
+        }
+      },
+      "execution_count": 176,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "  KSIC_CD ORG_FORM_CD QSTNR_NO TRGT_YEAR\n",
+              "0   22291           2  5406303      2018\n",
+              "1   22291           1  5351944      2018\n",
+              "2   22291           2  0221453      2018\n",
+              "3   22291           2  0228417      2018\n",
+              "4   22291           2  0226957      2018\n",
+              "5   22291           2  5333580      2018\n",
+              "6   22291           2  5355036      2018"
+            ],
+            "text/html": [
+              "\n",
+              "  <div id=\"df-05f9b447-9b3e-4cd6-9af6-1cecd2a42e27\">\n",
+              "    <div class=\"colab-df-container\">\n",
+              "      <div>\n",
+              "<style scoped>\n",
+              "    .dataframe tbody tr th:only-of-type {\n",
+              "        vertical-align: middle;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe tbody tr th {\n",
+              "        vertical-align: top;\n",
+              "    }\n",
+              "\n",
+              "    .dataframe thead th {\n",
+              "        text-align: right;\n",
+              "    }\n",
+              "</style>\n",
+              "<table border=\"1\" class=\"dataframe\">\n",
+              "  <thead>\n",
+              "    <tr style=\"text-align: right;\">\n",
+              "      <th></th>\n",
+              "      <th>KSIC_CD</th>\n",
+              "      <th>ORG_FORM_CD</th>\n",
+              "      <th>QSTNR_NO</th>\n",
+              "      <th>TRGT_YEAR</th>\n",
+              "    </tr>\n",
+              "  </thead>\n",
+              "  <tbody>\n",
+              "    <tr>\n",
+              "      <th>0</th>\n",
+              "      <td>22291</td>\n",
+              "      <td>2</td>\n",
+              "      <td>5406303</td>\n",
+              "      <td>2018</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>1</th>\n",
+              "      <td>22291</td>\n",
+              "      <td>1</td>\n",
+              "      <td>5351944</td>\n",
+              "      <td>2018</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>2</th>\n",
+              "      <td>22291</td>\n",
+              "      <td>2</td>\n",
+              "      <td>0221453</td>\n",
+              "      <td>2018</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>3</th>\n",
+              "      <td>22291</td>\n",
+              "      <td>2</td>\n",
+              "      <td>0228417</td>\n",
+              "      <td>2018</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>4</th>\n",
+              "      <td>22291</td>\n",
+              "      <td>2</td>\n",
+              "      <td>0226957</td>\n",
+              "      <td>2018</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>5</th>\n",
+              "      <td>22291</td>\n",
+              "      <td>2</td>\n",
+              "      <td>5333580</td>\n",
+              "      <td>2018</td>\n",
+              "    </tr>\n",
+              "    <tr>\n",
+              "      <th>6</th>\n",
+              "      <td>22291</td>\n",
+              "      <td>2</td>\n",
+              "      <td>5355036</td>\n",
+              "      <td>2018</td>\n",
+              "    </tr>\n",
+              "  </tbody>\n",
+              "</table>\n",
+              "</div>\n",
+              "      <button class=\"colab-df-convert\" onclick=\"convertToInteractive('df-05f9b447-9b3e-4cd6-9af6-1cecd2a42e27')\"\n",
+              "              title=\"Convert this dataframe to an interactive table.\"\n",
+              "              style=\"display:none;\">\n",
+              "        \n",
+              "  <svg xmlns=\"http://www.w3.org/2000/svg\" height=\"24px\"viewBox=\"0 0 24 24\"\n",
+              "       width=\"24px\">\n",
+              "    <path d=\"M0 0h24v24H0V0z\" fill=\"none\"/>\n",
+              "    <path d=\"M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z\"/><path d=\"M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z\"/>\n",
+              "  </svg>\n",
+              "      </button>\n",
+              "      \n",
+              "  <style>\n",
+              "    .colab-df-container {\n",
+              "      display:flex;\n",
+              "      flex-wrap:wrap;\n",
+              "      gap: 12px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert {\n",
+              "      background-color: #E8F0FE;\n",
+              "      border: none;\n",
+              "      border-radius: 50%;\n",
+              "      cursor: pointer;\n",
+              "      display: none;\n",
+              "      fill: #1967D2;\n",
+              "      height: 32px;\n",
+              "      padding: 0 0 0 0;\n",
+              "      width: 32px;\n",
+              "    }\n",
+              "\n",
+              "    .colab-df-convert:hover {\n",
+              "      background-color: #E2EBFA;\n",
+              "      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);\n",
+              "      fill: #174EA6;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert {\n",
+              "      background-color: #3B4455;\n",
+              "      fill: #D2E3FC;\n",
+              "    }\n",
+              "\n",
+              "    [theme=dark] .colab-df-convert:hover {\n",
+              "      background-color: #434B5C;\n",
+              "      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);\n",
+              "      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));\n",
+              "      fill: #FFFFFF;\n",
+              "    }\n",
+              "  </style>\n",
+              "\n",
+              "      <script>\n",
+              "        const buttonEl =\n",
+              "          document.querySelector('#df-05f9b447-9b3e-4cd6-9af6-1cecd2a42e27 button.colab-df-convert');\n",
+              "        buttonEl.style.display =\n",
+              "          google.colab.kernel.accessAllowed ? 'block' : 'none';\n",
+              "\n",
+              "        async function convertToInteractive(key) {\n",
+              "          const element = document.querySelector('#df-05f9b447-9b3e-4cd6-9af6-1cecd2a42e27');\n",
+              "          const dataTable =\n",
+              "            await google.colab.kernel.invokeFunction('convertToInteractive',\n",
+              "                                                     [key], {});\n",
+              "          if (!dataTable) return;\n",
+              "\n",
+              "          const docLinkHtml = 'Like what you see? Visit the ' +\n",
+              "            '<a target=\"_blank\" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'\n",
+              "            + ' to learn more about interactive tables.';\n",
+              "          element.innerHTML = '';\n",
+              "          dataTable['output_type'] = 'display_data';\n",
+              "          await google.colab.output.renderOutput(dataTable, element);\n",
+              "          const docLink = document.createElement('div');\n",
+              "          docLink.innerHTML = docLinkHtml;\n",
+              "          element.appendChild(docLink);\n",
+              "        }\n",
+              "      </script>\n",
+              "    </div>\n",
+              "  </div>\n",
+              "  "
+            ]
+          },
+          "metadata": {},
+          "execution_count": 176
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def test(abc):\n",
+        "  URL =('http://apis.data.go.kr/B553530/GHG_LIST_04/'\n",
+        "     'GHG_LIST_04_01_VIEW?'\n",
+        "     'ServiceKey=qGhKz6oZzGAhnSPbQeJXI4EBJJoMc9%2BQkI4z3j2y%2BquCu78sMk0Pd0OaGW2F6wmynA6keNju2Okl7dtqFtibNg%3D%3D'\n",
+        "     '&q1=2018'\n",
+        "     '&q2=2'\n",
+        "     '&q3=3'\n",
+        "     '&q4='+abc+\n",
+        "     '&apiType=JSON&numOfRows=10'\n",
+        "     '&pageNo=1')\n",
+        "\n",
+        "  response=requests.get(URL)\n",
+        "\n",
+        "  r= response.json()\n",
+        "  items = r['opentable']['field']  \n",
+        "\n",
+        "  KSIC_CD = [item['KSIC_CD']for item in items]\n",
+        "  ORG_FORM_CD= [item['ORG_FORM_CD']for item in items]\n",
+        "  QSTNR_NO = [item['QSTNR_NO']for item in items] \n",
+        "  TRGT_YEAR = [item['TRGT_YEAR']for item in items]   \n",
+        "\n",
+        "\n",
+        "  KSIC_CD = pd.Series(KSIC_CD)\n",
+        "  ORG_FORM_CD= pd.Series(ORG_FORM_CD)\n",
+        "  QSTNR_NO = pd.Series(QSTNR_NO)\n",
+        "  TRGT_YEAR = pd.Series(TRGT_YEAR)\n",
+        "\n",
+        "  df = pd.DataFrame({'KSIC_CD': KSIC_CD, 'ORG_FORM_CD': ORG_FORM_CD, 'QSTNR_NO': QSTNR_NO, 'TRGT_YEAR': TRGT_YEAR})\n",
+        "  return df\n",
+        "    "
+      ],
+      "metadata": {
+        "id": "Pk1IG0psa48e"
+      },
+      "execution_count": 212,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "iface = gr.Interface(test, gr.inputs.Dropdown(['29271','29272','29273']), outputs=['dataframe'])\n",
+        "iface.launch"
+      ],
+      "metadata": {
+        "id": "eudT5Z5OeEln",
+        "outputId": "ec57eefe-65f9-4290-e7a3-928c6f920a48",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        }
+      },
+      "execution_count": 215,
+      "outputs": [
+        {
+          "output_type": "execute_result",
+          "data": {
+            "text/plain": [
+              "<bound method Interface.launch of Gradio Interface for: test\n",
+              "--------------------------\n",
+              "inputs:\n",
+              "|-Dropdown(label=\"None\")\n",
+              "outputs:\n",
+              "|-Dataframe(label=\"None\")>"
+            ]
+          },
+          "metadata": {},
+          "execution_count": 215
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "colab": {
+      "collapsed_sections": [],
+      "name": "Colaboratory에 오신 것을 환영합니다",
+      "provenance": [],
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "display_name": "Python 3",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 0
+}
